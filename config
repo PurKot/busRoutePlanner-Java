@@ -1,0 +1,12 @@
+[core]
+	symlinks = false
+	repositoryformatversion = 0
+	filemode = false
+	logallrefupdates = true
+	bare = false
+[gui]
+	wmstate = normal
+	geometry = 1109x563+32+32 216 255
+[remote "routePlannerJava"]
+	url = https//github.com/PurKot/routePlannerJava
+	fetch = +refs/heads/*:refs/remotes/routePlannerJava/*

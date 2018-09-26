@@ -1,0 +1,28 @@
+apply plugin: 'java-library'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName ='edu.tamu.routePlanner.Main'
+
+dependencies {
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+  	compile group: 'org.neo4j.driver', name: 'neo4j-java-driver', version: '1.4.4'
+ 	compile group: 'org.springframework', name: 'spring-web', version: '5.0.0.RELEASE'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2'
+   	compile group: 'org.neo4j', name: 'neo4j-ogm-core', version: '3.0.0'
+	compile group: 'org.neo4j', name: 'neo4j-ogm-bolt-driver', version: '3.0.0'
+    compile group: 'org.springframework.data', name: 'spring-data-neo4j', version: '5.0.0.RELEASE'
+    runtime 'org.neo4j:neo4j-ogm-bolt-driver:3.0' 
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.5.0'
+    compile group: 'org.json', name: 'json', version: '20171018'
+    
+}
+task BulkLoadDB (type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'edu.tamu.routePlanner.data.Neo4jBulkDataLoader'
+}
+
+run.dependsOn(BulkLoadDB)
